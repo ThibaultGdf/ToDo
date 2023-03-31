@@ -13,9 +13,20 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+        
+        var titles = ["Nettoyer la poussière", "Passer l'aspirateur", "Faire la vaisselle"]
+        var missions = ["Votre mission est de nettoyer la poussière", "Votre mission est de passer l'aspirateur", "Votre mission est de faire la vaisselle"]
+        var recompense = ["as de la poussière", "as de l'aspirateur", "as de la vaisselle"]
+        var status = TaskStatus.allCases
+        
+        
+        for _ in 0..<3 {
+            let newTask = ToDoTask(context: viewContext)
+            newTask.dueDate = Date()
+            newTask.title =  titles.randomElement()
+            newTask.mission = missions.randomElement()
+            newTask.recompense = recompense.randomElement()
+            newTask.status = status.map { $0.rawValue }.randomElement()
         }
         do {
             try viewContext.save()

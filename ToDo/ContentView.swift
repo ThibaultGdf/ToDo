@@ -12,40 +12,40 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \ToDoTask.dueDate, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var tasks: FetchedResults<ToDoTask>
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
+                ForEach(tasks) { task in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text("Task at \(task.dueDate, formatter: taskFormatter)")
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text(task.dueDate, formatter: taskFormatter)
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: deleteTasks)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    Button(action: addTask) {
+                        Label("Add Task", systemImage: "plus")
                     }
                 }
             }
-            Text("Select an item")
+            Text("Select a task")
         }
     }
 
-    private func addItem() {
+    private func addTask() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newTask = ToDoTask(context: viewContext)
+            newTask.dueDate = Date()
 
             do {
                 try viewContext.save()
@@ -58,9 +58,9 @@ struct ContentView: View {
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteTasks(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { tasks[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -74,7 +74,7 @@ struct ContentView: View {
     }
 }
 
-private let itemFormatter: DateFormatter = {
+private let taskFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
     formatter.timeStyle = .medium
