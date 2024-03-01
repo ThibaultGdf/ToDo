@@ -13,6 +13,7 @@ class MissionViewModel: ObservableObject {
 	
 	private let taskRepository = TaskRepository()
 	
+	@Published var currentFilter: StatusType = .all
 	//    @FetchRequest(
 	//        sortDescriptors: [
 	//            NSSortDescriptor(keyPath: \ToDoTask.dueDate, ascending: true),

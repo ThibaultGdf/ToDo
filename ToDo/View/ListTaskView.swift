@@ -13,49 +13,19 @@ struct ListTaskView: View {
 	
 	// MARK: Properties
 	@State private var showingSheet = false
-	@State private var currentFilter: StatusType = .all
 	
 	@StateObject var viewModel = MissionViewModel()
 	
-	@Environment(\.managedObjectContext) private var viewContext
 	@Environment(\.editMode) private var editMode
 	
 	// MARK: Body
 	var body: some View {
 		NavigationStack {
 			VStack {
-				HStack {
-					Text("Filtrer les tâches")
-					Spacer()
-					Picker("Select a paint color", selection: $currentFilter) {
-						ForEach(StatusType.allCases, id: \.self) {
-							Text($0.rawValue)
-						}
-					}
-					.onChange(of: self.currentFilter) { newValue in
-						viewModel.getTasks(withStatus: newValue)
-					}
-					.pickerStyle(.menu)
-				}.padding()
-				
-				List {
-					ForEach(self.viewModel.tasks) { task in
-						NavigationLink {
-							DetailView(newTask: task, editTask: task)
-						} label: {
-							Text(task.title ?? "")
-						}
-						.padding(10)
-						.listRowBackground(StatusType(rawValue: task.status ?? "")?.color ?? Color.purple)
-					}
-					.onDelete { offsets in
-						viewModel.deleteTasks(offsets: offsets, viewContext: viewContext)
-					}
-					.refreshable {
-						print("Actualisation")
-					}
-				}
+				FilterSelectionView(viewModel: viewModel)
+				ListView(viewModel: viewModel)
 			}
+			
 			.toolbar {
 				ToolbarItem(placement: .navigationBarLeading) {
 					EditButton()
@@ -80,11 +50,11 @@ struct ListTaskView: View {
 				}
 			}
 			.onAppear {
-				viewModel.getTasks(withStatus: currentFilter)
+				viewModel.getTasks(withStatus: viewModel.currentFilter)
 			}
 		}
 		.onChange(of: showingSheet) { _ in
-			viewModel.getTasks(withStatus: currentFilter)
+			viewModel.getTasks(withStatus: viewModel.currentFilter)
 		}
 	}
 }

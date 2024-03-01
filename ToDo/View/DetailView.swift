@@ -41,11 +41,10 @@ struct DetailView: View {
     }()
     
     var body: some View {
-            VStack{
-                
+            VStack {
                 List {
                     Picker("What is the progress?", selection: $selection) {
-                        ForEach(StatusType.allCases, id: \.self) {
+						ForEach(StatusType.allCases.filter { $0 != .all }, id: \.self) {
                             Text($0.rawValue)
                         }
                     }
@@ -89,7 +88,6 @@ struct DetailView: View {
                 }
                 .scrollContentBackground(.hidden)
                 .toolbar {
-                    
                     ToolbarItem(placement: .principal) {
                         VStack {
                             Text(newTask.title ?? "")
@@ -101,10 +99,8 @@ struct DetailView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             isPresented.toggle()
-                            
                         } label: {
                             Image(systemName: "square.and.pencil")
-                            
                         }.padding()
                     }
                 }
@@ -160,8 +156,6 @@ struct DetailView_Previews: PreviewProvider {
     
     static var previews: some View {
         DetailView(newTask: task, editTask: task)
-            .environment(\.managedObjectContext, persistence.container.viewContext)
-            .environmentObject(MissionViewModel())
     }
 }
 

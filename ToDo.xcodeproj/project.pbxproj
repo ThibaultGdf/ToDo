@@ -33,6 +33,8 @@
 		D906361529B1E5CC00FAFE6B /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D906361429B1E5CC00FAFE6B /* ColorExtension.swift */; };
 		D906361729B206DD00FAFE6B /* AddViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D906361629B206DD00FAFE6B /* AddViewModelTests.swift */; };
 		D91849772B9208F5004B7E32 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91849762B9208F4004B7E32 /* Task.swift */; };
+		D91849962B923421004B7E32 /* FilterSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91849952B923421004B7E32 /* FilterSelectionView.swift */; };
+		D91849982B92353E004B7E32 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91849972B92353E004B7E32 /* ListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		D906361429B1E5CC00FAFE6B /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		D906361629B206DD00FAFE6B /* AddViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModelTests.swift; sourceTree = "<group>"; };
 		D91849762B9208F4004B7E32 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		D91849952B923421004B7E32 /* FilterSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectionView.swift; sourceTree = "<group>"; };
+		D91849972B92353E004B7E32 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +182,7 @@
 		D90635EB29B0E99F00FAFE6B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D91849942B923411004B7E32 /* Components */,
 				D90635F629B0EA8300FAFE6B /* ListTaskView.swift */,
 				D90635FA29B0EC1300FAFE6B /* DetailView.swift */,
 				D90635FE29B0EEC200FAFE6B /* AddView.swift */,
@@ -230,6 +235,15 @@
 				D906360329B0F0DA00FAFE6B /* TaskRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		D91849942B923411004B7E32 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D91849952B923421004B7E32 /* FilterSelectionView.swift */,
+				D91849972B92353E004B7E32 /* ListView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,6 +384,8 @@
 				D90635C629B0E97B00FAFE6B /* Persistence.swift in Sources */,
 				D906360529B0F16800FAFE6B /* TaskRepository.swift in Sources */,
 				D90635F129B0EA3500FAFE6B /* NotificationManager.swift in Sources */,
+				D91849982B92353E004B7E32 /* ListView.swift in Sources */,
+				D91849962B923421004B7E32 /* FilterSelectionView.swift in Sources */,
 				D906361329B1E43F00FAFE6B /* ToDoTask+CoreDataClass.swift in Sources */,
 				D90635BD29B0E97A00FAFE6B /* ToDoApp.swift in Sources */,
 				D906360929B0F7EF00FAFE6B /* DateExtension.swift in Sources */,
