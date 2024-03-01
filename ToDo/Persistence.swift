@@ -15,17 +15,15 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         
         var titles = ["Nettoyer la poussière", "Passer l'aspirateur", "Faire la vaisselle"]
-        var missions = ["Votre mission est de nettoyer la poussière", "Votre mission est de passer l'aspirateur", "Votre mission est de faire la vaisselle"]
-        var recompense = ["as de la poussière", "as de l'aspirateur", "as de la vaisselle"]
-        var status = TaskStatus.allCases
+        var notes = ["Votre mission est de nettoyer la poussière", "Votre mission est de passer l'aspirateur", "Votre mission est de faire la vaisselle"]
+        var status = StatusType.allCases
         
         
         for _ in 0..<3 {
             let newTask = ToDoTask(context: viewContext)
             newTask.dueDate = Date()
             newTask.title =  titles.randomElement()
-            newTask.mission = missions.randomElement()
-            newTask.recompense = recompense.randomElement()
+            newTask.note = notes.randomElement()
             newTask.status = status.map { $0.rawValue }.randomElement()
         }
         do {

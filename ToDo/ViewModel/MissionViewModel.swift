@@ -10,48 +10,47 @@ import SwiftUI
 import CoreData
 
 class MissionViewModel: ObservableObject {
-    
-    private let taskRepository = TaskRepository()
-    
-    //    @FetchRequest(
-    //        sortDescriptors: [
-    //            NSSortDescriptor(keyPath: \ToDoTask.dueDate, ascending: true),
-    //            NSSortDescriptor(keyPath: \ToDoTask.title, ascending: true)
-    //        ],
-    //        animation: .default
-    //    )
-    //    private var tasks: FetchedResults<ToDoTask>
-    
-    @Published var selection: TaskStatus = TaskStatus.toDo
-    
-    @Published var tasks: [ToDoTask] = []
-    
-    
-    func getTasks() {
-        let result = taskRepository.fetchTasks()
-        tasks = result
-    }
-    
-    func addTask(dueDate: Date, title: String, mission: String, recompense: String) {
-        taskRepository.addTask(
-            dueDate: dueDate,
-            title: title,
-            mission: mission,
-            recompense: recompense
-        )
-        getTasks()
-    }
-    
-    func deleteTasks(offsets: IndexSet, viewContext: NSManagedObjectContext) {
-        taskRepository.deleteTasks(
-            tasks: tasks,
-            offsets: offsets,
-            viewContext: viewContext
-        )
-        getTasks()
-    }
-    
-    func deleteTask(task: ToDoTask) {
-        taskRepository.deleteTask(task: task)
-    }
+	
+	private let taskRepository = TaskRepository()
+	
+	//    @FetchRequest(
+	//        sortDescriptors: [
+	//            NSSortDescriptor(keyPath: \ToDoTask.dueDate, ascending: true),
+	//            NSSortDescriptor(keyPath: \ToDoTask.title, ascending: true)
+	//        ],
+	//        animation: .default
+	//    )
+	//    private var tasks: FetchedResults<ToDoTask>
+	
+	@Published var tasks: [ToDoTask] = []
+	
+	func getTasks(withStatus status: StatusType?) {
+		self.tasks = taskRepository
+			.fetchTasks()
+			.filter { task in
+				if status == .all { return true }
+				guard let taskStatus = StatusType(rawValue: task.status ?? "") else { return false }
+				return taskStatus == status
+			}
+	}
+	
+	func addTask(dueDate: Date, title: String, note: String) {
+		taskRepository.addTask(
+			dueDate: dueDate,
+			title: title,
+			note: note
+		)
+	}
+	
+	func deleteTasks(offsets: IndexSet, viewContext: NSManagedObjectContext) {
+		taskRepository.deleteTasks(
+			tasks: tasks,
+			offsets: offsets,
+			viewContext: viewContext
+		)
+	}
+	
+	func deleteTask(task: ToDoTask) {
+		taskRepository.deleteTask(task: task)
+	}
 }

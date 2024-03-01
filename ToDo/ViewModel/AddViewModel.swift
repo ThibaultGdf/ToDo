@@ -12,12 +12,11 @@ class AddViewModel : ObservableObject {
     private let taskRepository = TaskRepository()
     
     @Published var title: String = ""
-    @Published var mission: String = ""
-    @Published var recompense: String = ""
+    @Published var note: String = ""
     @Published var date = Date()
     
     var isAddButtonDisabled: Bool {
-        title.isEmpty || mission.isEmpty || recompense.isEmpty
+        title.isEmpty || note.isEmpty
     }
     
     /**
@@ -27,8 +26,7 @@ class AddViewModel : ObservableObject {
         taskRepository.addTask(
             dueDate: date,
             title: title,
-            mission: mission,
-            recompense: recompense
+            note: note
         )
     }
 }

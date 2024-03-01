@@ -18,8 +18,7 @@ extension ToDoTask {
 
     @NSManaged public var dueDate: Date
     @NSManaged public var id: UUID?
-    @NSManaged public var mission: String?
-    @NSManaged public var recompense: String?
+    @NSManaged public var note: String?
     @NSManaged public var status: String?
     @NSManaged public var title: String?
 

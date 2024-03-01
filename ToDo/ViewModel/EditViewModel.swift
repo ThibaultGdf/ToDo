@@ -25,16 +25,14 @@ class EditViewModel : ObservableObject {
         task: ToDoTask,
         dueDate: Date,
         title: String,
-        mission: String,
-        recompense: String,
+		note: String,
         status: String
     ) {
         taskRepository.editTask(
             task: task,
             dueDate: dueDate,
             title: title,
-            mission: mission,
-            recompense: recompense,
+            note: note,
             status: status
         )
     }

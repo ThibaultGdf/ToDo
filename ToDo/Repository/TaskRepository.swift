@@ -42,17 +42,15 @@ class TaskRepository {
     func addTask(
         dueDate: Date,
         title: String,
-        mission: String,
-        recompense: String
+		note: String
     ) {
         
         let newTask = ToDoTask(context: self.container.viewContext)
         newTask.id = UUID()
         newTask.dueDate = dueDate
         newTask.title = title
-        newTask.mission = mission
-        newTask.recompense = recompense
-        newTask.status = TaskStatus.toDo.rawValue
+        newTask.note = note
+        newTask.status = StatusType.toDo.rawValue
         
         saveData()
         NotificationManager.shared.addNotification(task: newTask)
@@ -72,14 +70,12 @@ class TaskRepository {
         task: ToDoTask,
         dueDate: Date,
         title: String,
-        mission: String,
-        recompense: String,
+		note: String,
         status: String
     ) {
         task.dueDate = dueDate
         task.title = title
-        task.mission = mission
-        task.recompense = recompense
+        task.note = note
         task.status = status
         saveData()
     }

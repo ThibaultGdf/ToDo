@@ -12,7 +12,7 @@ struct AddMissionView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) var dismiss
     
-    @EnvironmentObject var viewModel : AddViewModel
+    @StateObject var viewModel = AddViewModel()
     
     let dateRange: ClosedRange<Date> = {
         let calendar = Calendar.current
@@ -49,8 +49,7 @@ struct AddMissionView: View {
             Form{
                 Section("Ajouter une Mission") {
                     TextField("", text: $viewModel.title, prompt: Text("Titre"))
-                    TextField("", text: $viewModel.mission, prompt: Text("Mission"))
-                    TextField("", text: $viewModel.recompense, prompt: Text("Récompense"))
+                    TextField("", text: $viewModel.note, prompt: Text("Note"))
                 }
                 Section("ajouter une alerte") {
                     DatePicker(

@@ -9,17 +9,21 @@ import SwiftUI
 import CoreData
 
 struct EditView: View {
+	
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var viewModel: EditViewModel
+	
+    @StateObject var viewModel = EditViewModel()
+	
     @ObservedObject var task : ToDoTask
+	
     @State var title: String = ""
-    @State var mission: String = ""
-    @State var recompense: String = ""
-    @State var status: TaskStatus  = .toDo
+    @State var note: String = ""
+    @State var status: StatusType  = .toDo
+	
     var body: some View {
-        VStack{
-            HStack{
+        VStack {
+            HStack {
                 Button {
                     dismiss()
                 } label: {
@@ -33,9 +37,8 @@ struct EditView: View {
                     viewModel.editTask(
                         task: task,
                         dueDate: task.dueDate,
-                        title: title,
-                        mission: mission,
-                        recompense: recompense,
+						title: title, 
+						note: note,
                         status: status.rawValue
                     )
                     dismiss()
@@ -47,15 +50,13 @@ struct EditView: View {
             Form{
                 Section("Modifier la mission") {
                     TextField("", text: $title, prompt: Text("Titre"))
-                    TextField("", text: $mission, prompt: Text("Mission"))
-                    TextField("", text: $recompense, prompt:   Text("Récompense"))
+                    TextField("", text: $note, prompt: Text("Mission"))
                 }
             }
         }
         .onAppear{
             title = task.title ?? ""
-            mission = task.mission ?? ""
-            recompense = task.mission ?? ""
+            note = task.note ?? ""
         }
     }
     

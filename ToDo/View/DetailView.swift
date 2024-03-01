@@ -11,13 +11,13 @@ struct DetailView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @EnvironmentObject var viewModel : DetailViewModel
+    @StateObject var viewModel = DetailViewModel()
     
     @ObservedObject var newTask: ToDoTask
     
     @State var editTask: ToDoTask?
     @State var isPresented = false
-    @State var selection: TaskStatus = .toDo
+    @State var selection: StatusType = .toDo
     
     private let photo = Image("todo")
     let dateRange: ClosedRange<Date> = {
@@ -41,12 +41,11 @@ struct DetailView: View {
     }()
     
     var body: some View {
-        NavigationStack{
             VStack{
                 
                 List {
                     Picker("What is the progress?", selection: $selection) {
-                        ForEach(TaskStatus.allCases, id: \.self) {
+                        ForEach(StatusType.allCases, id: \.self) {
                             Text($0.rawValue)
                         }
                     }
@@ -56,18 +55,15 @@ struct DetailView: View {
                             task: newTask,
                             dueDate: newTask.dueDate,
                             title: newTask.title ?? "",
-                            mission: newTask.mission ?? "",
-                            recompense: newTask.recompense ?? "",
+							note: newTask.note ?? "",
                             status: newValue.rawValue
                         )
                     }
                     
                     Section(header: Text("Mission"))  {
-                        Text(newTask.mission ?? "")
+                        Text(newTask.note ?? "")
                     }
-                    Section(header: Text("Récompense")) {
-                        Text(newTask.recompense ?? "")
-                    }
+                    
                     Section("Alerte programmée :") {
                         DatePicker(
                             "Heure",
@@ -85,8 +81,7 @@ struct DetailView: View {
                                 task: newTask,
                                 dueDate: newDate,
                                 title: newTask.title ?? "",
-                                mission: newTask.mission ?? "",
-                                recompense: newTask.recompense ?? "",
+								note: newTask.note ?? "",
                                 status: newTask.status ?? ""
                             )
                         }
@@ -140,7 +135,6 @@ struct DetailView: View {
                     ShareLink(item: newTask.title ?? "") {
                         Text("Partager")
                             .foregroundColor(.white)
-                    }
                 }
             }
         }
@@ -148,7 +142,7 @@ struct DetailView: View {
     }
     
     func onAppear () {
-        self.selection = TaskStatus(rawValue:  newTask.status!) ?? .toDo
+        self.selection = StatusType(rawValue:  newTask.status!) ?? .toDo
     }
 }
 
@@ -158,8 +152,7 @@ struct DetailView_Previews: PreviewProvider {
         let context = persistence.container.viewContext
         let task = ToDoTask(context: context)
         task.title = "Titre"
-        task.mission = "Mission"
-        task.recompense = "Récompense"
+        task.note = "Note"
         task.status = "Status"
         task.dueDate = Date()
         return task

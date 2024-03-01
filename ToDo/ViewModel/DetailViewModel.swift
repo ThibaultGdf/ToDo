@@ -17,24 +17,21 @@ class DetailViewModel : ObservableObject {
         - task : Tâche à modifiée
         - dueDate : Date et heure de la notification
         - title : Titre de la mission
-        - mission : Description de la mission
-        - recompense : Récompense lorsque la mission  est réalisée
+        - note : Description de la mission
         - status : Valeur de l'énumération TaskStatus
      */
     func editTask(
         task: ToDoTask,
         dueDate: Date,
         title: String,
-        mission: String,
-        recompense: String,
+		note: String,
         status: String
     ) {
         taskRepository.editTask(
             task: task,
             dueDate: dueDate,
             title: title,
-            mission: mission,
-            recompense: recompense,
+			note: note,
             status: status
         )
     }
