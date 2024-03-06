@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - ListView
 struct ListView: View {
 	
-	// MARK: Properties :
-	@ObservedObject var viewModel: MissionViewModel
+	// MARK: Properties
+	@ObservedObject var viewModel: HomeListViewModel
 	
 	@Environment(\.managedObjectContext) private var viewContext
 	
@@ -20,7 +20,7 @@ struct ListView: View {
 		List {
 			ForEach(self.viewModel.tasks) { task in
 				NavigationLink {
-					DetailView(newTask: task, editTask: task)
+					DetailView()
 				} label: {
 					Text(task.title ?? "")
 				}
@@ -41,5 +41,5 @@ struct ListView: View {
 
 // MARK: - Preview
 #Preview {
-	ListView(viewModel: MissionViewModel())
+	ListView(viewModel: HomeListViewModel())
 }

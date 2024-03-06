@@ -13,7 +13,7 @@ struct ToDoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ListTaskView()
+            HomeListView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .onAppear { // Affiche la demande d'autorisation des notifications
                     NotificationManager.shared.requestAuthorization()

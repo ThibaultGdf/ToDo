@@ -7,13 +7,13 @@
 
 import Foundation
 
-class AddViewModel : ObservableObject {
+class AddTaskViewModel : ObservableObject {
     
     private let taskRepository = TaskRepository()
     
     @Published var title: String = ""
     @Published var note: String = ""
-    @Published var date = Date()
+	@Published var date = Date()
     
     var isAddButtonDisabled: Bool {
         title.isEmpty || note.isEmpty

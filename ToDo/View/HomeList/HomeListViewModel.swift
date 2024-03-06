@@ -1,5 +1,5 @@
 //
-//  MissionViewModel.swift
+//  HomeListViewModel.swift
 //  ToDo
 //
 //  Created by Thibault GODEFROY on 02/03/2023.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import CoreData
 
-class MissionViewModel: ObservableObject {
+class HomeListViewModel: ObservableObject {
 	
 	private let taskRepository = TaskRepository()
 	

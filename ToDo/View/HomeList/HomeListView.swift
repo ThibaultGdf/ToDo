@@ -1,5 +1,5 @@
 //
-//  MissionView.swift
+//  HomeListView.swift
 //  ToDo
 //
 //  Created by Thibault GODEFROY on 02/03/2023.
@@ -8,13 +8,14 @@
 import SwiftUI
 import CoreData
 
-// MARK: MissionView
-struct ListTaskView: View {
+// MARK: HomeListView
+struct HomeListView: View {
 	
 	// MARK: Properties
 	@State private var showingSheet = false
 	
-	@StateObject var viewModel = MissionViewModel()
+	@StateObject var viewModel = HomeListViewModel()
+	@State private var isPresented = false
 	
 	@Environment(\.editMode) private var editMode
 	
@@ -45,7 +46,7 @@ struct ListTaskView: View {
 					} label : {
 						Image(systemName: "plus")
 					}.sheet(isPresented: $showingSheet) {
-						AddMissionView()
+						AddTaskView()
 					}
 				}
 			}
@@ -59,16 +60,6 @@ struct ListTaskView: View {
 	}
 }
 
-private let taskFormatter: DateFormatter = {
-	let formatter = DateFormatter()
-	formatter.dateStyle = .short
-	formatter.timeStyle = .medium
-	return formatter
-}()
-
-struct MissionView_Previews: PreviewProvider {
-	static var previews: some View {
-		ListTaskView()
-			.environmentObject(MissionViewModel())
-	}
+#Preview {
+	HomeListView()
 }

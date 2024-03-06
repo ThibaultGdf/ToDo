@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct EditView: View {
+struct EditTaskView: View {
 	
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) var dismiss
@@ -62,10 +62,7 @@ struct EditView: View {
     
 }
 
-struct EditMissionView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditView(task: ToDoTask())
-            .environmentObject(MissionViewModel())
-    }
+#Preview {
+        EditTaskView(task: ToDoTask())
 }
 

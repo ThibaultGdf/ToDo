@@ -11,7 +11,7 @@ import SwiftUI
 struct FilterSelectionView: View {
 	
 	// MARK: Properties
-	@ObservedObject var viewModel: MissionViewModel
+	@ObservedObject var viewModel: HomeListViewModel
 	
 	// MARK: Body
     var body: some View {
@@ -32,5 +32,5 @@ struct FilterSelectionView: View {
 
 // MARK: - Preview
 #Preview {
-	FilterSelectionView(viewModel: MissionViewModel())
+	FilterSelectionView(viewModel: HomeListViewModel())
 }

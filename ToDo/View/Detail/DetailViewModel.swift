@@ -10,7 +10,11 @@ import Foundation
 class DetailViewModel : ObservableObject {
     
     private let taskRepository = TaskRepository()
+	
+	@Published var date = Date()
     
+	var task: ToDoTask?
+	
     /**
      Permet de modifier la mission et de l'enregistrer
      - Parameters:
@@ -36,8 +40,8 @@ class DetailViewModel : ObservableObject {
         )
     }
     
-    
-    func deleteTask(task: ToDoTask) {
-        taskRepository.deleteTask(task: task)
+    func deleteTask() {
+		guard let task = self.task else { return }
+		taskRepository.deleteTask(task: task)
     }
 }
