@@ -11,15 +11,39 @@ import SwiftUI
 struct DetailView: View {
 	
 	// MARK: Properties
-	@StateObject var viewModel = DetailViewModel()
+	@ObservedObject var viewModel: DetailViewModel
+	
+	@Environment(\.dismiss) var dismiss
+
 	
 	// MARK: Body
 	var body: some View {
-		TaskDetailList(viewModel: viewModel)
+		NavigationStack {
+			TaskDetailList(viewModel: viewModel)
+			Button {
+				self.viewModel.deleteTask()
+				dismiss()
+			} label: {
+				Text("Supprimer")
+					.foregroundColor(.red)
+			}
+			.toolbar {
+				ToolbarItem(placement: .automatic) {
+					ShareLink(item: viewModel.task.title ?? "Ce champ n'est pas rempli") {
+								Image(systemName: "square.and.arrow.up")
+							}
+				}
+			}
+		}
+		
+	}
+	
+	init(task: ToDoTask) {
+		self.viewModel = DetailViewModel(task: task)
 	}
 }
 
-// MARK: - Preview
-#Preview {
-	DetailView()
-}
+//// MARK: - Preview
+//#Preview {
+//	DetailView()
+//}

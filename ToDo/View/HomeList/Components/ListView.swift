@@ -20,7 +20,7 @@ struct ListView: View {
 		List {
 			ForEach(self.viewModel.tasks) { task in
 				NavigationLink {
-					DetailView()
+					DetailView(task: task)
 				} label: {
 					Text(task.title ?? "")
 				}

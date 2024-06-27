@@ -13,7 +13,11 @@ class DetailViewModel : ObservableObject {
 	
 	@Published var date = Date()
     
-	var task: ToDoTask?
+	var task: ToDoTask
+	
+	init(task: ToDoTask) {
+		self.task = task
+	}
 	
     /**
      Permet de modifier la mission et de l'enregistrer
@@ -41,7 +45,6 @@ class DetailViewModel : ObservableObject {
     }
     
     func deleteTask() {
-		guard let task = self.task else { return }
-		taskRepository.deleteTask(task: task)
+		taskRepository.deleteTask(task: self.task)
     }
 }

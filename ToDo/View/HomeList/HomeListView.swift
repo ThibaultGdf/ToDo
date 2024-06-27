@@ -51,11 +51,11 @@ struct HomeListView: View {
 				}
 			}
 			.onAppear {
-				viewModel.getTasks(withStatus: viewModel.currentFilter)
+				self.viewModel.getTasks(withStatus: viewModel.currentFilter)
 			}
 		}
 		.onChange(of: showingSheet) { _ in
-			viewModel.getTasks(withStatus: viewModel.currentFilter)
+			self.viewModel.getTasks(withStatus: viewModel.currentFilter)
 		}
 	}
 }

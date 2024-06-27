@@ -14,14 +14,6 @@ class HomeListViewModel: ObservableObject {
 	private let taskRepository = TaskRepository()
 	
 	@Published var currentFilter: StatusType = .all
-	//    @FetchRequest(
-	//        sortDescriptors: [
-	//            NSSortDescriptor(keyPath: \ToDoTask.dueDate, ascending: true),
-	//            NSSortDescriptor(keyPath: \ToDoTask.title, ascending: true)
-	//        ],
-	//        animation: .default
-	//    )
-	//    private var tasks: FetchedResults<ToDoTask>
 	
 	@Published var tasks: [ToDoTask] = []
 	

@@ -17,7 +17,7 @@ struct TaskDetailList: View {
     var body: some View {
 		Form {
 			Section(header: Text("Tâche à faire"))  {
-				Text(viewModel.task?.title ?? "Ce champ est vide")
+				Text(viewModel.task.title ?? "Ce champ est vide")
 			}
 			Section(header: Text("Status")) {
 				PickerView()
@@ -29,12 +29,13 @@ struct TaskDetailList: View {
 						height: 100,
 						alignment: .topLeading
 					)
+				
 			}
 		}
     }
 }
 
 // MARK: - Preview
-#Preview {
-	TaskDetailList(viewModel: DetailViewModel())
-}
+//#Preview {
+//	TaskDetailList(viewModel: DetailViewModel())
+//}
