@@ -23,19 +23,18 @@ struct TaskDetailList: View {
 				PickerView()
 			}
 			Section(header: Text("Description"))  {
-				Text("Ce champ est vide")
+				Text(viewModel.task.note ?? "Ce champ est vide")
 					.frame(
 						width: 300,
 						height: 100,
 						alignment: .topLeading
 					)
-				
 			}
 		}
     }
 }
 
 // MARK: - Preview
-//#Preview {
-//	TaskDetailList(viewModel: DetailViewModel())
-//}
+#Preview {
+	TaskDetailList(viewModel: DetailViewModel(task: ToDoTask()))
+}

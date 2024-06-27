@@ -15,7 +15,6 @@ struct DetailView: View {
 	
 	@Environment(\.dismiss) var dismiss
 
-	
 	// MARK: Body
 	var body: some View {
 		NavigationStack {
@@ -44,6 +43,6 @@ struct DetailView: View {
 }
 
 //// MARK: - Preview
-//#Preview {
-//	DetailView()
-//}
+#Preview {
+	DetailView(task: ToDoTask())
+}
