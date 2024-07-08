@@ -1,5 +1,18 @@
 # ToDo (SwiftUI)
 
+### Matrice de Test
+
+| Cas de Test | Résultats Attendus | Statut |
+|-------------|---------------------|--------|
+| Ajouter une activité avec titre, description, date et heure | L'activité est ajoutée avec succès et affichée dans la liste avec le titre, la description, la date et l'heure. |        |
+| Modifier une activité existante | Les modifications sont sauvegardées et l'activité mise à jour est affichée avec les nouvelles informations. |        |
+| Supprimer une activité | L'activité est supprimée de la liste et n'apparaît plus dans l'application. |        |
+| Afficher la liste des activités | La liste des activités s'affiche avec toutes les activités existantes, y compris leurs titres, descriptions, dates et heures. |        |
+| Validation des champs obligatoires lors de l'ajout d'une activité | Un message d'erreur apparaît indiquant que le titre est obligatoire. |        |
+| Validation des champs obligatoires lors de la modification d'une activité | Un message d'erreur apparaît indiquant que le titre est obligatoire. |        |
+| Affichage correct des dates et heures | La date et l'heure de l'activité sont affichées dans le bon format et correspondent aux valeurs saisies. |        |
+
+
 ## Contexte du projet
 
 Votre client a besoin d'une application de tâches collaborative fun et facile d'utilisation pour l'organisation de la vie en collocation.
